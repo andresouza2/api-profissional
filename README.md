@@ -30,7 +30,7 @@ Esta documentação descreve a API RESTful para gerenciamento de clientes, produ
 - Usuário autenticado pode editar seus próprios produtos
 - Usuário autenticado pode deletar seus próprios produtos
 
-**Pedidos (MVP REAL)**
+**Pedidos**
 
 - Usuário autenticado pode criar um pedido
 - Pedido deve conter ao menos 1 produto
