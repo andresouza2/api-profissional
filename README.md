@@ -10,29 +10,29 @@ Esta documentação descreve a API RESTful para gerenciamento de clientes, produ
 
 ## Lista MVP da API
 
-"Usuários autenticados podem gerenciar seus produtos e criar pedidos com cálculo automático de valor."
+"Customers autenticados podem gerenciar seus produtos e criar pedidos com cálculo automático de valor."
 
 **AUTENTICAÇÃO**
 
-- Usuário pode se cadastrar com email e senha
-- Usuário pode se autenticar (login)
-- Usuário autenticado pode acessar rotas protegidas
+- Customer pode se cadastrar com email e senha
+- Customer pode se autenticar (login)
+- Customer autenticado pode acessar rotas protegidas
 
-**USUÁRIO**
+**CUSTOMER**
 
-- Buscar dados do usuário autenticado (/me)
+- Buscar dados do customer autenticado (/me)
 
 **PRODUTOS**
 
-- Usuário autenticado pode cadastrar um produto
-- Usuário pode listar produtos
-- Usuário pode buscar um produto por ID
-- Usuário autenticado pode editar seus próprios produtos
-- Usuário autenticado pode deletar seus próprios produtos
+- Customer autenticado pode cadastrar um produto
+- Customer pode listar produtos
+- Customer pode buscar um produto por ID
+- Customer autenticado pode editar seus próprios produtos
+- Customer autenticado pode deletar seus próprios produtos
 
 **Pedidos**
 
-- Usuário autenticado pode criar um pedido
+- Customer autenticado pode criar um pedido
 - Pedido deve conter ao menos 1 produto
 - Pedido deve calcular o valor total automaticamente
 - Pedido inicia com status PENDING
