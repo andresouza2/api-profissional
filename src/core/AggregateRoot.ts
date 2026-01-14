@@ -1,3 +1,3 @@
-import { Entity } from "./Entity";
+import { Entity } from './Entity'
 
-export class AggregateRoot<T> extends Entity<T> { }
+export class AggregateRoot<T> extends Entity<T> {}

@@ -12,3 +12,6 @@
 /backup
 /archive
 /old
+
+.env
+.env.local
