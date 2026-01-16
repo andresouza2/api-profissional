@@ -12,7 +12,10 @@ export default defineConfig([
   {
     plugins: { js, prettier: prettierPlugin },
     languageOptions: {
-      globals: globals.node,
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+      },
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
