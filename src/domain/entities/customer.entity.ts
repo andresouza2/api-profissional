@@ -1,6 +1,6 @@
 import { AggregateRoot } from '../../core/AggregateRoot'
 import { UniqueEntityId } from '../../core/UniqueEntityId'
-import { Address } from '../../core/value-objects/address.vo'
+import { Address } from '../value-objects/address.vo'
 
 interface CustomerProps {
   name: string
