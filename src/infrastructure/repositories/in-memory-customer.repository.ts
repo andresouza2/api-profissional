@@ -1,4 +1,4 @@
-import { Customer } from '../../domain/entities/customer.entity'
+import { Customer } from '../../domain/entities/customer/customer.entity'
 import { CustomerRepository } from '../../application/repositories/customer.repository'
 
 export class InMemoryCustomerRepository extends CustomerRepository {

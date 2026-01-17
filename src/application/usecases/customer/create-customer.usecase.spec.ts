@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals'
-import { Customer } from '../../domain/entities/customer.entity'
-import { InMemoryCustomerRepository } from '../../infrastructure/repositories/in-memory-customer.repository'
+import { Customer } from '../../../domain/entities/customer/customer.entity'
+import { InMemoryCustomerRepository } from '../../../infrastructure/repositories/in-memory-customer.repository'
 import { CreateCustomerUseCase } from './create-customer.usecase'
 
 describe('CreateCustomerUseCase', () => {

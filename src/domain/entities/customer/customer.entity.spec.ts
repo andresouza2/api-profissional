@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals'
-import { Address } from '../value-objects/address.vo'
+import { Address } from '../../value-objects/address.vo'
 import { Customer } from './customer.entity'
 
 describe('Customer Entity', () => {
