@@ -1,5 +1,5 @@
 import { Customer } from '../../domain/entities/customer.entity'
-import { CustomerRepository } from '../../domain/repositories/customer.repository'
+import { CustomerRepository } from '../repositories/customer.repository'
 
 export class CreateCustomerUseCase {
   constructor(private readonly customerRepository: CustomerRepository) {}
