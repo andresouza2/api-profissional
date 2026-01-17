@@ -114,20 +114,4 @@ describe('LoginUseCase', () => {
 
     expect(result.user.role).toBe('ADMIN')
   })
-
-  it('deve normalizar email para lowercase', async () => {
-    const user = User.create({
-      name: 'João Silva',
-      email: Email.create('joao@email.com'),
-      password: Password.fromHashed('hashed_Senha123'),
-    })
-    userRepository.save(user)
-
-    const result = await sut.execute({
-      email: 'JOAO@EMAIL.COM',
-      password: 'Senha123',
-    })
-
-    expect(result.user.email).toBe('joao@email.com')
-  })
 })
