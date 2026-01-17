@@ -28,7 +28,7 @@ export class LoginUseCase {
   async execute(input: LoginInput): Promise<LoginOutput> {
     const { email, password } = input
 
-    const newEmail = Email.create(email)
+    const newEmail = Email.create(email).toValue()
 
     const user = await this.userRepository.findByEmail(newEmail)
 
