@@ -1,59 +1,58 @@
-import { UserAlreadyExistsError } from '../../../core/errors/auth.errors'
-import { User } from '../../../domain/entities/user/user.entity'
-import { Email } from '../../../domain/value-objects/email.vo'
+import { CustomerAlreadyExistsError } from '../../../core/errors/auth.errors'
+import { Customer } from '../../../domain/entities/customer/customer.entity'
 import { Password } from '../../../domain/value-objects/password-hash.vo'
-import { UserRepository } from '../../repositories/user.repository'
+import { CustomerRepository } from '../../repositories/customer.repository'
 import { HashService } from '../../services/hash.service'
 
 export interface RegisterInput {
   name: string
   email: string
+  document: string
   password: string
 }
 
 export interface RegisterOutput {
-  user: {
+  customer: {
     id: string
     name: string
     email: string
-    role: string
+    document: string
   }
 }
 
 export class RegisterUseCase {
   constructor(
-    private readonly userRepository: UserRepository,
+    private readonly customerRepository: CustomerRepository,
     private readonly hashedService: HashService,
   ) {}
 
   async execute(input: RegisterInput): Promise<RegisterOutput> {
-    const { name, email, password } = input
+    const { name, email, document, password } = input
 
-    const emailVO = Email.create(email)
+    const existsCustomer = await this.customerRepository.findByEmail(email)
 
-    const existsUser = await this.userRepository.findByEmail(emailVO.toValue())
-
-    if (existsUser) {
-      throw new UserAlreadyExistsError()
+    if (existsCustomer) {
+      throw new CustomerAlreadyExistsError()
     }
 
     const passwordVO = Password.create(password)
     const hashedPassword = await this.hashedService.hash(passwordVO.toValue())
 
-    const user = User.create({
+    const customer = Customer.create({
       name,
-      email: emailVO,
+      email,
+      document,
       password: Password.fromHashed(hashedPassword),
     })
 
-    await this.userRepository.save(user)
+    await this.customerRepository.save(customer)
 
     return {
-      user: {
-        id: user.id.toValue(),
-        name: user.name,
-        email: user.email.toValue(),
-        role: user.role,
+      customer: {
+        id: customer.id.toValue(),
+        name: customer.name,
+        email: customer.email,
+        document: customer.document,
       },
     }
   }

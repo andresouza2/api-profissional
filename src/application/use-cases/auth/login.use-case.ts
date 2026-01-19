@@ -1,4 +1,4 @@
-import { UserRepository } from '../../repositories/user.repository'
+import { CustomerRepository } from '../../repositories/customer.repository'
 import { HashService } from '../../services/hash.service'
 import { TokenService } from '../../services/token.service'
 import { Email } from '../../../domain/value-objects/email.vo'
@@ -10,17 +10,17 @@ export interface LoginInput {
 }
 export interface LoginOutput {
   accessToken: string
-  user: {
+  customer: {
     id: string
     name: string
     email: string
-    role: string
+    document: string
   }
 }
 
 export class LoginUseCase {
   constructor(
-    private readonly userRepository: UserRepository,
+    private readonly customerRepository: CustomerRepository,
     private readonly hashService: HashService,
     private readonly tokenService: TokenService,
   ) {}
@@ -28,39 +28,37 @@ export class LoginUseCase {
   async execute(input: LoginInput): Promise<LoginOutput> {
     const { email, password } = input
 
-    const newEmail = Email.create(email).toValue()
+    const customer = await this.customerRepository.findByEmail(email)
 
-    const user = await this.userRepository.findByEmail(newEmail)
-
-    if (!user) {
+    if (!customer) {
       throw new InvalidCredentialsError()
     }
-    if (!user.isActive) {
+    if (!customer.isActive) {
       throw new UserInactiveError()
     }
 
-    const passwordMatches = await this.hashService.compare(password, user.password.toValue())
+    const passwordMatches = await this.hashService.compare(password, customer.password.toValue())
 
     if (!passwordMatches) {
       throw new InvalidCredentialsError()
     }
 
-    user.registerLogin()
-    await this.userRepository.save(user)
+    customer.registerLogin()
+    await this.customerRepository.save(customer)
 
     const accessToken = this.tokenService.sign({
-      sub: user.id.toValue(),
-      email: user.email.toValue(),
-      role: user.role,
+      sub: customer.id.toValue(),
+      email: customer.email,
+      role: 'CUSTOMER',
     })
 
     return {
       accessToken,
-      user: {
-        id: user.id.toValue(),
-        name: user.name,
-        email: user.email.toValue(),
-        role: user.role,
+      customer: {
+        id: customer.id.toValue(),
+        name: customer.name,
+        email: customer.email,
+        document: customer.document,
       },
     }
   }
