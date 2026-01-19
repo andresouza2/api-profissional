@@ -1,4 +1,4 @@
-import { Customer } from '../../domain/entities/customer/customer.entity'
+import { Customer } from '../../domain/entities/customer/customer.entity.js'
 
 export abstract class CustomerRepository {
   abstract create(customer: Customer): Promise<void>

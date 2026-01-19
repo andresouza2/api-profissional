@@ -1,8 +1,8 @@
 import { describe, expect, it } from '@jest/globals'
-import { Customer } from '../../../domain/entities/customer/customer.entity'
-import { InMemoryCustomerRepository } from '../../../infrastructure/repositories/in-memory-customer.repository'
-import { CreateCustomerUseCase } from './create-customer.use-case'
-import { Password } from '../../../domain/value-objects/password-hash.vo'
+import { Customer } from '../../../domain/entities/customer/customer.entity.js'
+import { InMemoryCustomerRepository } from '../../../infrastructure/repositories/in-memory-customer.repository.js'
+import { CreateCustomerUseCase } from './create-customer.use-case.js'
+import { Password } from '../../../domain/value-objects/password-hash.vo.js'
 
 describe('CreateCustomerUseCase', () => {
   it('should create a customer successfully', async () => {

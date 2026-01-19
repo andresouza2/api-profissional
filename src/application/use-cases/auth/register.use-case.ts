@@ -1,8 +1,8 @@
-import { CustomerAlreadyExistsError } from '../../../core/errors/auth.errors'
-import { Customer } from '../../../domain/entities/customer/customer.entity'
-import { Password } from '../../../domain/value-objects/password-hash.vo'
-import { CustomerRepository } from '../../repositories/customer.repository'
-import { HashService } from '../../services/hash.service'
+import { CustomerAlreadyExistsError } from '../../../core/errors/auth.errors.js'
+import { Customer } from '../../../domain/entities/customer/customer.entity.js'
+import { Password } from '../../../domain/value-objects/password-hash.vo.js'
+import { CustomerRepository } from '../../repositories/customer.repository.js'
+import { HashService } from '../../services/hash.service.js'
 
 export interface RegisterInput {
   name: string
