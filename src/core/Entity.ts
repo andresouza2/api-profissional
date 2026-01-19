@@ -1,4 +1,4 @@
-import { UniqueEntityId } from './UniqueEntityId.js'
+import { UniqueEntityId } from './UniqueEntityId'
 
 export class Entity<T> {
   private readonly _id: UniqueEntityId

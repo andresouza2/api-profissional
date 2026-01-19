@@ -12,7 +12,6 @@
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/andresouza2/api-profissional.git"

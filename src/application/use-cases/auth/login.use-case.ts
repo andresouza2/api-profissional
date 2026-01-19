@@ -1,7 +1,7 @@
-import { CustomerRepository } from '../../repositories/customer.repository.js'
-import { HashService } from '../../services/hash.service.js'
-import { TokenService } from '../../services/token.service.js'
-import { InvalidCredentialsError, UserInactiveError } from '../../../core/errors/auth.errors.js'
+import { CustomerRepository } from '../../repositories/customer.repository'
+import { HashService } from '../../services/hash.service'
+import { TokenService } from '../../services/token.service'
+import { InvalidCredentialsError, UserInactiveError } from '../../../core/errors/auth.errors'
 
 export interface LoginInput {
   email: string

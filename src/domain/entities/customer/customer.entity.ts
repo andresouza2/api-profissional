@@ -1,7 +1,7 @@
-import { Password } from './../../value-objects/password-hash.vo.js'
-import { AggregateRoot } from '../../../core/AggregateRoot.js'
-import { UniqueEntityId } from '../../../core/UniqueEntityId.js'
-import { Address } from '../../value-objects/address.vo.js'
+import { Password } from './../../value-objects/password-hash.vo'
+import { AggregateRoot } from '../../../core/AggregateRoot'
+import { UniqueEntityId } from '../../../core/UniqueEntityId'
+import { Address } from '../../value-objects/address.vo'
 
 interface CustomerProps {
   name: string
