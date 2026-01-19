@@ -1,5 +1,16 @@
 # API REST Documentation
 
+## 📋 Sumário
+
+- [Visão Geral](#visão-geral)
+- [Tecnologias](#tecnologias)
+- [Instalação e Execução](#instalação-e-execução)
+- [Docker](#docker)
+- [Lista MVP](#lista-mvp-da-api)
+- [Autenticação](#autenticação)
+- [Respostas Padrão](#respostas-padrão)
+- [Entidades](#entidades)
+
 ## Visão Geral
 
 Esta documentação descreve a API RESTful para gerenciamento de clientes, produtos, pedidos e itens de pedido.
@@ -7,6 +18,136 @@ Esta documentação descreve a API RESTful para gerenciamento de clientes, produ
 **Base URL:** `https://api.exemplo.com/v1`
 
 **Content-Type:** `application/json`
+
+## Tecnologias
+
+### Stack Principal
+
+- **Runtime:** Node.js 16+
+- **Linguagem:** TypeScript
+- **Framework Web:** Express.js 5.x
+- **Autenticação:** JWT (jsonwebtoken)
+- **Hash de Senha:** Bcrypt
+- **Validação:** Zod
+
+### Desenvolvimento
+
+- **Bundler:** TSX (TypeScript Execute)
+- **Testes:** Jest 30.x
+- **Linting:** ESLint + Prettier
+- **Build:** TypeScript Compiler (tsc)
+
+### Infraestrutura
+
+- **Containerização:** Docker & Docker Compose
+- **Arquitetura:** Clean Architecture / DDD (Domain-Driven Design)
+
+## Instalação e Execução
+
+### Pré-requisitos
+
+- Node.js 16 ou superior
+- npm ou yarn
+
+### Rodar Localmente
+
+#### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/andresouza2/api-profissional.git
+cd api-profissional
+```
+
+#### 2. Instalar dependências
+
+```bash
+npm install
+```
+
+#### 3. Compilar TypeScript
+
+```bash
+npm run build
+```
+
+#### 4. Executar em desenvolvimento (com hot reload)
+
+```bash
+npm run dev
+```
+
+A API estará disponível em `http://localhost:3030`
+
+#### 5. Executar em produção
+
+```bash
+npm start
+```
+
+### Comandos Úteis
+
+| Comando              | Descrição                                             |
+| -------------------- | ----------------------------------------------------- |
+| `npm run dev`        | Inicia a aplicação em desenvolvimento com auto-reload |
+| `npm run build`      | Compila TypeScript para JavaScript                    |
+| `npm start`          | Inicia a aplicação compilada                          |
+| `npm test`           | Executa todos os testes                               |
+| `npm run test:watch` | Executa testes em modo watch                          |
+| `npm run lint`       | Verifica erros de estilo de código                    |
+| `npm run lint:fix`   | Corrige automaticamente erros de estilo               |
+
+## Docker
+
+### Rodar com Docker Compose
+
+#### 1. Build da imagem (opcional, é feito automaticamente)
+
+```bash
+docker-compose build
+```
+
+#### 2. Iniciar os serviços
+
+```bash
+docker-compose up
+```
+
+A API estará disponível em `http://localhost:3030`
+
+#### 3. Parar os serviços
+
+```bash
+docker-compose down
+```
+
+#### 4. Executar em background
+
+```bash
+docker-compose up -d
+```
+
+### Rodar com Docker manualmente
+
+#### Build da imagem
+
+```bash
+docker build -t api-profissional:latest .
+```
+
+#### Executar container
+
+```bash
+docker run -p 3030:3030 -e NODE_ENV=development api-profissional:latest
+```
+
+### Variáveis de Ambiente
+
+As seguintes variáveis podem ser configuradas via arquivo `.env`:
+
+```env
+NODE_ENV=development
+PORT=3030
+```
 
 ## Lista MVP da API
 
