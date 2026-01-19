@@ -7,6 +7,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "dev": "cross-env NODE_ENV=development tsx watch src/index.ts",
+    "dev:local": "cross-env NODE_ENV=local tsx watch src/index.ts",
     "build": "tsc",
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "lint": "eslint src/",
