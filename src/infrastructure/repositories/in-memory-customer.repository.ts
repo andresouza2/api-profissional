@@ -1,5 +1,5 @@
+import { CustomerRepository } from '../../application/repositories/customer/customer.repository'
 import { Customer } from '../../domain/entities/customer/customer.entity'
-import { CustomerRepository } from '../../application/repositories/customer.repository'
 
 export class InMemoryCustomerRepository extends CustomerRepository {
   private readonly customers: Customer[] = []
@@ -15,10 +15,14 @@ export class InMemoryCustomerRepository extends CustomerRepository {
 
   async save(customer: Customer): Promise<void> {
     const index = this.customers.findIndex((c) => c.id.toValue() === customer.id.toValue())
-    if (index !== -1) {
+    if (index >= 0) {
       this.customers[index] = customer
     } else {
       this.customers.push(customer)
     }
+  }
+  async findById(id: string): Promise<Customer | null> {
+    const customer = this.customers.find((customer) => customer.id.toValue() === id) ?? null
+    return customer
   }
 }

@@ -4,7 +4,8 @@ import { CustomerRepository } from '../../repositories/customer/customer.reposit
 export class CreateCustomerUseCase {
   constructor(private readonly customerRepository: CustomerRepository) {}
 
-  async execute(input: Customer): Promise<void> {
-    await this.customerRepository.create(input)
+  async execute(customer: Customer): Promise<Customer> {
+    await this.customerRepository.create(customer)
+    return customer
   }
 }
