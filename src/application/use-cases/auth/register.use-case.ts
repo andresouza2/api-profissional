@@ -1,7 +1,8 @@
 import { CustomerAlreadyExistsError } from '../../../core/errors/auth.errors'
 import { Customer } from '../../../domain/entities/customer/customer.entity'
 import { Password } from '../../../domain/value-objects/password-hash.vo'
-import { CustomerRepository } from '../../repositories/customer.repository'
+import { CustomerRepository } from '../../repositories/customer/customer.repository'
+
 import { HashService } from '../../services/hash.service'
 
 export interface RegisterInput {
