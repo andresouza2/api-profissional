@@ -18,3 +18,6 @@
 .env.development
 .env.test
 .env.production
+/generated/prisma
+
+/src/generated/prisma

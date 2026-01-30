@@ -1,15 +1,39 @@
-version: '3'
+version: '3.8'
+
 services:
-  node:
+  api:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: node_api
     ports:
-      - "3030:3030"
-    volumes:
-      - .:/usr/src/app
-    working_dir: /usr/src/app
-    command: ["npm", "run", "start"]
-    environment:
-      - NODE_ENV=development
+      - '${PORT}:3030'
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    networks:
+      - app_network
     restart: always
+
+  postgres:
+    image: postgres:16
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+    restart: always
+
+volumes:
+  postgres_data:
+
+networks:
+  app_network:
+    driver: bridge
