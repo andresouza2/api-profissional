@@ -12,15 +12,17 @@ export class CustomerMapper {
         document: raw.document,
         phone: raw.phone || undefined,
         password: Password.fromHashed(raw.password),
-        address: new Address({
-          street: raw.address?.street,
-          city: raw.address?.city,
-          state: raw.address?.state,
-          zipCode: raw.address?.zipCode,
-          neighborhood: raw.address?.neighborhood,
-          number: raw.address?.number,
-          complement: raw.address?.complement,
-        }),
+        address: raw.addresses
+          ? new Address({
+              street: raw.address?.street,
+              city: raw.address?.city,
+              state: raw.address?.state,
+              zipCode: raw.address?.zipCode,
+              neighborhood: raw.address?.neighborhood,
+              number: raw.address?.number,
+              complement: raw.address?.complement,
+            })
+          : undefined,
         isActive: raw.isActive,
         createdAt: raw.createdAt,
         updatedAt: raw.updatedAt,
@@ -37,7 +39,11 @@ export class CustomerMapper {
       document: customer.document,
       phone: customer.phone ?? '',
       password: customer.password.toValue(),
-      address: customer.address ?? null,
+      address: customer.address
+        ? {
+            create: customer.address.toValue(),
+          }
+        : undefined,
       isActive: customer.isActive,
       createdAt: customer.createdAt,
       updatedAt: customer.updatedAt,
