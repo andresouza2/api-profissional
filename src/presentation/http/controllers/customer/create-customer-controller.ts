@@ -2,7 +2,7 @@ import {
   CreateCustomerDTO,
   CreateCustomerUseCase,
 } from '../../../../application/use-cases/customer/create-customer.use-case'
-import { CustomerAlreadyExistsError } from '../../../../core/errors/auth.errors'
+import { DomainError } from '../../../../core/errors/domain-error'
 import { HttpResponse } from '../../response/HttpResponse'
 import { badRequest, created } from '../../response/HttpResponses'
 
@@ -30,9 +30,10 @@ export class CreateCustomerController {
 
       return created(customer)
     } catch (error) {
-      if (error instanceof CustomerAlreadyExistsError) {
-        return badRequest({ message: error.message })
+      if (error instanceof DomainError) {
+        return badRequest({ message: error.message, code: error.code })
       }
+      console.log(error)
       return badRequest({ message: 'Erro ao criar cliente' })
     }
   }

@@ -1,7 +1,7 @@
 import express from 'express'
 import './config/env'
 import { env } from './config/env.schema'
-import { router } from './infrastructure/http/routes'
+import { router } from './presentation/http/routes'
 
 const app = express()
 
