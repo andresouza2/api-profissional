@@ -11,6 +11,7 @@ describe('Customer Entity', () => {
     city: 'São Paulo',
     state: 'SP',
     zipCode: '01000-000',
+    country: 'Brazil',
   })
 
   const validProps = Customer.create({

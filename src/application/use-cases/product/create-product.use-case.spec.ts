@@ -29,7 +29,7 @@ describe('CreateProductUseCase', () => {
     const customer = Customer.create({
       name: 'Jane Doe',
       email: 'jane.doe@example.com',
-      password: Password.create('123456_Hash'),
+      password: Password.fromHashed('123456_Hash'),
       document: '98765432100',
     })
     customerRepo.findById.mockResolvedValue(customer)

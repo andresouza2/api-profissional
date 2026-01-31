@@ -1,11 +1,13 @@
 import { describe, expect, it } from '@jest/globals'
 import { InMemoryCustomerRepository } from '../../../infrastructure/repositories/in-memory-customer.repository'
 import { CreateCustomerDTO, CreateCustomerUseCase } from './create-customer.use-case'
+import { FakeHashService } from '../auth/fake-services.service'
 
 describe('CreateCustomerUseCase', () => {
   it('should create a customer successfully', async () => {
     const customerRepository = new InMemoryCustomerRepository()
-    const useCase = new CreateCustomerUseCase(customerRepository)
+    const hashService = new FakeHashService()
+    const useCase = new CreateCustomerUseCase(customerRepository, hashService)
 
     const newCustomerData: CreateCustomerDTO = {
       name: 'John Doe',
