@@ -1,18 +1,19 @@
+import { HashService } from '../../../../application/services/hash.service'
 import { InvalidPasswordError } from '../errors'
 
 export class Password {
   private readonly value: string
   private readonly isHashed: boolean
 
-  // FIXME: add hashing logic
   private constructor(password: string, isHashed: boolean) {
     this.value = password
     this.isHashed = isHashed
   }
 
-  static create(password: string): Password {
+  static async create(password: string, hashService: HashService): Promise<Password> {
     Password.validate(password)
-    return new Password(password, false)
+    const hashedPassword = await hashService.hash(password)
+    return new Password(hashedPassword, true)
   }
 
   static fromHashed(hashedPassword: string): Password {
@@ -43,11 +44,19 @@ export class Password {
     }
   }
 
-  toValue(): string {
-    return this.value
+  async hash(hashService: HashService): Promise<Password> {
+    if (this.isHashed) {
+      return this
+    }
+    const hashedValue = await hashService.hash(this.value)
+    return new Password(hashedValue, true)
   }
 
-  isPasswordHashed(): boolean {
-    return this.isHashed
+  async compare(plainPassword: string, hashService: HashService): Promise<boolean> {
+    return hashService.compare(plainPassword, this.value)
+  }
+
+  toValue(): string {
+    return this.value
   }
 }

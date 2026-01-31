@@ -3,6 +3,7 @@ import { CustomerAlreadyExistsError } from '../../../domain/entities/customer/er
 import { Address } from '../../../domain/entities/customer/value-object/address.vo'
 import { Password } from '../../../domain/entities/customer/value-object/password-hash.vo'
 import { CustomerRepository } from '../../repositories/customer/customer.repository'
+import { HashService } from '../../services/hash.service'
 
 export type CreateCustomerDTO = {
   name: string
@@ -14,15 +15,18 @@ export type CreateCustomerDTO = {
 }
 
 export class CreateCustomerUseCase {
-  constructor(private readonly customerRepository: CustomerRepository) {}
+  constructor(
+    private readonly customerRepository: CustomerRepository,
+    private readonly hashService: HashService,
+  ) {}
 
   async execute(data: CreateCustomerDTO): Promise<Customer> {
     const existingCustomer = await this.customerRepository.findByEmail(data.email)
 
     if (existingCustomer !== null) throw new CustomerAlreadyExistsError()
 
-    const password = Password.fromHashed(data.password)
-    console.log(password)
+    const password = await Password.create(data.password, this.hashService)
+    const passwordHashed = await password.hash(this.hashService)
 
     const customer = Customer.create({
       name: data.name,
@@ -30,7 +34,7 @@ export class CreateCustomerUseCase {
       document: data.document,
       phone: data.phone,
       address: data.address,
-      password,
+      password: passwordHashed,
     })
 
     await this.customerRepository.save(customer)
