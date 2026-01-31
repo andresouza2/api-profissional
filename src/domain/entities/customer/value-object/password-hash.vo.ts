@@ -1,7 +1,10 @@
+import { InvalidPasswordError } from '../errors'
+
 export class Password {
   private readonly value: string
   private readonly isHashed: boolean
 
+  // FIXME: add hashing logic
   private constructor(password: string, isHashed: boolean) {
     this.value = password
     this.isHashed = isHashed
@@ -17,20 +20,26 @@ export class Password {
   }
 
   static validate(password: string): void {
+    const violations: string[] = []
+
     if (!password || password.length < 8) {
-      throw new Error('Password must be at least 8 characters long')
+      violations.push('pelo menos 8 caracteres')
     }
     if (!/[A-Z]/.test(password)) {
-      throw new Error('Password must contain at least one uppercase letter')
+      violations.push('pelo menos uma letra maiúscula')
     }
     if (!/[a-z]/.test(password)) {
-      throw new Error('Password must contain at least one lowercase letter')
+      violations.push('pelo menos uma letra minúscula')
     }
     if (!/\d/.test(password)) {
-      throw new Error('Password must contain at least one digit')
+      violations.push('pelo menos um dígito')
     }
     if (!/[\W_]/.test(password)) {
-      throw new Error('Password must contain at least one special character')
+      violations.push('pelo menos um caractere especial')
+    }
+
+    if (violations.length > 0) {
+      throw new InvalidPasswordError(violations)
     }
   }
 

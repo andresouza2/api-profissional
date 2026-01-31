@@ -1,3 +1,5 @@
+import { InvalidAddressError } from '../errors'
+
 export interface AddressProps {
   street: string
   number: string
@@ -6,6 +8,7 @@ export interface AddressProps {
   city: string
   state: string
   zipCode: string
+  country: string
 }
 
 export class Address {
@@ -18,12 +21,25 @@ export class Address {
   }
 
   validate(props: AddressProps): void {
-    if (!props.street?.trim()) throw new Error('Street is required')
-    if (!props.number?.trim()) throw new Error('Number is required')
-    if (!props.neighborhood?.trim()) throw new Error('Neighborhood is required')
-    if (!props.city?.trim()) throw new Error('City is required')
-    if (!props.state?.trim()) throw new Error('State is required')
-    if (!props.zipCode?.match(/^\d{5}-?\d{3}$/)) throw new Error('Zip invalid')
+    const violations: string[] = []
+
+    if (!props.street?.trim()) violations.push('Street is required')
+
+    if (!props.number?.trim()) violations.push('Number is required')
+
+    if (!props.neighborhood?.trim()) violations.push('Neighborhood is required')
+
+    if (!props.city?.trim()) violations.push('City is required')
+
+    if (!props.state?.trim()) violations.push('State is required')
+
+    if (!props.zipCode?.match(/^\d{5}-?\d{3}$/)) violations.push('Zip invalid')
+
+    if (!props.country?.trim()) violations.push('Country is required')
+
+    if (violations.length > 0) {
+      throw new InvalidAddressError(violations)
+    }
   }
 
   equals(other: Address): boolean {
@@ -36,7 +52,8 @@ export class Address {
       this.props.neighborhood === other.props.neighborhood &&
       this.props.city === other.props.city &&
       this.props.state === other.props.state &&
-      this.props.zipCode === other.props.zipCode
+      this.props.zipCode === other.props.zipCode &&
+      this.props.country === other.props.country
     )
   }
 

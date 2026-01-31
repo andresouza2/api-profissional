@@ -1,6 +1,6 @@
-import { CustomerAlreadyExistsError } from '../../../core/errors/auth.errors'
 import { Customer } from '../../../domain/entities/customer/customer.entity'
-import { Password } from '../../../domain/value-objects/password-hash.vo'
+import { CustomerAlreadyExistsError } from '../../../domain/entities/customer/errors'
+import { Password } from '../../../domain/entities/customer/value-object/password-hash.vo'
 import { CustomerRepository } from '../../repositories/customer/customer.repository'
 
 import { HashService } from '../../services/hash.service'

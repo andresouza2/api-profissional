@@ -1,7 +1,7 @@
-import { Password } from './../../value-objects/password-hash.vo'
+import { Password } from './value-object/password-hash.vo'
 import { AggregateRoot } from '../../../core/AggregateRoot'
 import { UniqueEntityId } from '../../../core/UniqueEntityId'
-import { Address } from '../../value-objects/address.vo'
+import { Address } from './value-object/address.vo'
 
 interface CustomerProps {
   name: string
@@ -112,7 +112,7 @@ export class Customer extends AggregateRoot<CustomerProps> {
       email: this.email,
       document: this.document,
       phone: this.phone,
-      address: this.address ? this.address.toValue() : undefined,
+      address: this.address ?? undefined,
       isActive: this.isActive,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,

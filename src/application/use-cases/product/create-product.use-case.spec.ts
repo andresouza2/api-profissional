@@ -1,7 +1,7 @@
 import { jest } from '@jest/globals'
 import { Customer } from '../../../domain/entities/customer/customer.entity'
 import { Product } from '../../../domain/entities/product/product.entity'
-import { Password } from '../../../domain/value-objects/password-hash.vo'
+import { Password } from '../../../domain/entities/customer/value-object/password-hash.vo'
 import { CreateProductUseCase } from './create-product.use-case'
 import { CustomerRepository } from '../../repositories/customer/customer.repository'
 import { ProductRepository } from '../../repositories/product/product.repository'
@@ -14,9 +14,8 @@ describe('CreateProductUseCase', () => {
   beforeEach(() => {
     customerRepo = {
       findById: jest.fn(),
-      create: jest.fn(),
-      findByEmail: jest.fn(),
       save: jest.fn(),
+      findByEmail: jest.fn(),
     }
 
     productRepo = {

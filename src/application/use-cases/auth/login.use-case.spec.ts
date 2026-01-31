@@ -4,7 +4,7 @@ import { InvalidCredentialsError, UserInactiveError } from '../../../core/errors
 import { LoginUseCase } from './login.use-case'
 import { InMemoryCustomerRepository } from '../../../infrastructure/repositories/in-memory-customer.repository'
 import { FakeHashService, FakeTokenService } from './fake-services.service'
-import { Password } from '../../../domain/value-objects/password-hash.vo'
+import { Password } from '../../../domain/entities/customer/value-object/password-hash.vo'
 
 describe('LoginUseCase', () => {
   let sut: LoginUseCase
