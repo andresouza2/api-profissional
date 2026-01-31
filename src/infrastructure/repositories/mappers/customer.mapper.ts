@@ -1,7 +1,7 @@
 import { UniqueEntityId } from '../../../core/UniqueEntityId'
 import { Customer } from '../../../domain/entities/customer/customer.entity'
-import { Address } from '../../../domain/value-objects/address.vo'
-import { Password } from '../../../domain/value-objects/password-hash.vo'
+import { Address } from '../../../domain/entities/customer/value-object/address.vo'
+import { Password } from '../../../domain/entities/customer/value-object/password-hash.vo'
 
 export class CustomerMapper {
   static toDomain(raw: any): Customer {
@@ -15,12 +15,13 @@ export class CustomerMapper {
         address: raw.addresses
           ? new Address({
               street: raw.address?.street,
+              number: raw.address?.number,
               city: raw.address?.city,
               state: raw.address?.state,
               zipCode: raw.address?.zipCode,
               neighborhood: raw.address?.neighborhood,
-              number: raw.address?.number,
               complement: raw.address?.complement,
+              country: raw.address?.country,
             })
           : undefined,
         isActive: raw.isActive,
@@ -41,7 +42,7 @@ export class CustomerMapper {
       password: customer.password.toValue(),
       address: customer.address
         ? {
-            create: customer.address.toValue(),
+            create: customer.address,
           }
         : undefined,
       isActive: customer.isActive,
