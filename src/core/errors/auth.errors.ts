@@ -19,13 +19,6 @@ export class UserAlreadyExistsError extends Error {
   }
 }
 
-export class CustomerAlreadyExistsError extends Error {
-  constructor() {
-    super('Customer already exists')
-    this.name = 'CustomerAlreadyExistsError'
-  }
-}
-
 export class UserInactiveError extends Error {
   constructor() {
     super('User is inactive')
