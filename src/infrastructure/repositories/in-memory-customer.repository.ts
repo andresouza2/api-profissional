@@ -4,10 +4,6 @@ import { Customer } from '../../domain/entities/customer/customer.entity'
 export class InMemoryCustomerRepository extends CustomerRepository {
   private readonly customers: Customer[] = []
 
-  async create(customer: Customer): Promise<void> {
-    this.customers.push(customer)
-  }
-
   async findByEmail(email: string): Promise<Customer | null> {
     const customer = this.customers.find((customer) => customer.email === email) ?? null
     return customer
@@ -24,5 +20,9 @@ export class InMemoryCustomerRepository extends CustomerRepository {
   async findById(id: string): Promise<Customer | null> {
     const customer = this.customers.find((customer) => customer.id.toValue() === id) ?? null
     return customer
+  }
+
+  async findAll(): Promise<Customer[]> {
+    return this.customers
   }
 }

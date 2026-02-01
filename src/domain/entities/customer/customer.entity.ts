@@ -2,10 +2,11 @@ import { Password } from './value-object/password-hash.vo'
 import { AggregateRoot } from '../../../core/AggregateRoot'
 import { UniqueEntityId } from '../../../core/UniqueEntityId'
 import { Address } from './value-object/address.vo'
+import { InvalidCustomerError, InvalidFieldsCustomerError } from './errors'
 
 interface CustomerProps {
   name: string
-  email: string
+  email: string // FIXME: modificar para Value Object Email
   document: string
   password: Password
   phone?: string
@@ -62,7 +63,7 @@ export class Customer extends AggregateRoot<CustomerProps> {
 
   changeName(name: string): void {
     if (!name?.trim() || name.length === 0) {
-      throw new Error('Name is required')
+      throw new InvalidCustomerError('Name is required')
     }
     this.props.name = name
     this.touch()
@@ -120,10 +121,19 @@ export class Customer extends AggregateRoot<CustomerProps> {
   }
 
   private validate(): void {
-    if (!this.props.name?.trim()) throw new Error('Nome obrigatório')
-    if (!this.props.email?.includes('@')) throw new Error('Email inválido')
-    if (!this.props.document?.trim()) throw new Error('Documento obrigatório')
+    const violations: string[] = []
+
+    if (!this.props.name?.trim()) violations.push('Nome obrigatório')
+
+    if (!this.props.email?.includes('@')) violations.push('Email inválido')
+
+    if (!this.props.document?.trim()) violations.push('Documento obrigatório')
+
+    if (violations.length > 0) {
+      throw new InvalidFieldsCustomerError(violations)
+    }
   }
+
   static create(props: CustomerProps, id?: UniqueEntityId): Customer {
     return new Customer(props, id)
   }

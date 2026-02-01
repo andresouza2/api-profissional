@@ -8,6 +8,32 @@ export class CustomerAlreadyExistsError extends DomainError {
   }
 }
 
+export class CustomerNotFoundError extends DomainError {
+  readonly code = 'CUSTOMER_NOT_FOUND'
+
+  constructor(message?: string) {
+    super(message ?? 'Customer not found')
+  }
+}
+
+export class InvalidCustomerError extends DomainError {
+  readonly code = 'INVALID_CUSTOMER'
+
+  constructor(message?: string) {
+    super(message ?? 'invalid field for customer')
+  }
+}
+
+export class InvalidFieldsCustomerError extends DomainError {
+  readonly code = 'INVALID_FIELDS_CUSTOMER'
+  readonly violations: string[]
+
+  constructor(violations: string[]) {
+    super(`Campos inválidos para o cliente: ${violations.join(', ')}`)
+    this.violations = violations
+  }
+}
+
 export class InvalidPasswordError extends DomainError {
   readonly code = 'INVALID_PASSWORD'
   readonly violations: string[]

@@ -16,6 +16,7 @@ describe('CreateProductUseCase', () => {
       findById: jest.fn(),
       save: jest.fn(),
       findByEmail: jest.fn(),
+      findAll: jest.fn(),
     }
 
     productRepo = {

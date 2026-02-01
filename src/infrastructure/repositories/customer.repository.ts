@@ -40,7 +40,6 @@ export class CustomerRepositoryImpl extends CustomerRepository {
       updatedAt: customer.updatedAt,
     })
   }
-
   async save(customer: Customer): Promise<void> {
     const data = CustomerMapper.toPrisma(customer)
     await prisma.customers.upsert({
@@ -48,5 +47,26 @@ export class CustomerRepositoryImpl extends CustomerRepository {
       create: data,
       update: data,
     })
+  }
+  async findAll(): Promise<Customer[]> {
+    const customers = await prisma.customers.findMany({
+      include: {
+        address: true,
+      },
+    })
+
+    return customers.map((customer) =>
+      CustomerMapper.toDomain({
+        id: customer.id,
+        name: customer.name,
+        email: customer.email,
+        document: customer.document,
+        phone: customer.phone || undefined,
+        address: customer.address || undefined,
+        isActive: customer.isActive,
+        createdAt: customer.createdAt,
+        updatedAt: customer.updatedAt,
+      }),
+    )
   }
 }

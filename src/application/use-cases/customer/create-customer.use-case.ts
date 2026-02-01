@@ -23,7 +23,9 @@ export class CreateCustomerUseCase {
   async execute(data: CreateCustomerDTO): Promise<Customer> {
     const existingCustomer = await this.customerRepository.findByEmail(data.email)
 
-    if (existingCustomer !== null) throw new CustomerAlreadyExistsError()
+    if (existingCustomer !== null) {
+      throw new CustomerAlreadyExistsError()
+    }
 
     const password = await Password.create(data.password, this.hashService)
     const passwordHashed = await password.hash(this.hashService)
