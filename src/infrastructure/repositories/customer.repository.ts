@@ -7,6 +7,9 @@ export class CustomerRepositoryImpl extends CustomerRepository {
   async findByEmail(email: string): Promise<Customer | null> {
     const customer = await prisma.customers.findUnique({
       where: { email },
+      include: {
+        address: true,
+      },
     })
 
     if (!customer) return null
@@ -16,7 +19,8 @@ export class CustomerRepositoryImpl extends CustomerRepository {
       name: customer.name,
       email: customer.email,
       document: customer.document,
-      phone: customer.phone || undefined,
+      phone: customer.phone || null,
+      address: customer.address || null,
       isActive: customer.isActive,
       createdAt: customer.createdAt,
       updatedAt: customer.updatedAt,
@@ -25,6 +29,9 @@ export class CustomerRepositoryImpl extends CustomerRepository {
   async findById(id: string): Promise<Customer | null> {
     const customer = await prisma.customers.findUnique({
       where: { id },
+      include: {
+        address: true,
+      },
     })
 
     if (!customer) return null
@@ -34,7 +41,8 @@ export class CustomerRepositoryImpl extends CustomerRepository {
       name: customer.name,
       email: customer.email,
       document: customer.document,
-      phone: customer.phone || undefined,
+      phone: customer.phone || null,
+      address: customer.address || null,
       isActive: customer.isActive,
       createdAt: customer.createdAt,
       updatedAt: customer.updatedAt,
@@ -61,8 +69,8 @@ export class CustomerRepositoryImpl extends CustomerRepository {
         name: customer.name,
         email: customer.email,
         document: customer.document,
-        phone: customer.phone || undefined,
-        address: customer.address || undefined,
+        phone: customer.phone || null,
+        address: customer.address || null,
         isActive: customer.isActive,
         createdAt: customer.createdAt,
         updatedAt: customer.updatedAt,

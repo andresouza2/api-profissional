@@ -4,11 +4,11 @@ import { HttpResponse } from '../response/HttpResponse'
 export interface HttpController {
   handle(request: HttpRequest): Promise<HttpResponse>
 }
-export interface HttpRequest {
-  body?: Request['body']
-  params?: Request['params']
-  query?: Request['query']
-  headers?: Request['headers']
+export interface HttpRequest<TBody = unknown, TParams = unknown, TQuery = unknown, THeaders = unknown> {
+  body?: TBody
+  params?: TParams
+  query?: TQuery
+  headers?: THeaders
 }
 
 export function adapterExpressRoute(controller: HttpController) {

@@ -15,7 +15,6 @@ export class ListAllCustomerController {
       if (error instanceof DomainError) {
         return badRequest({ message: error.message, code: error.code })
       }
-      console.log(error)
       return badRequest({ message: 'Erro ao listar clientes' })
     }
   }

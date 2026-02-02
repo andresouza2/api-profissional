@@ -53,3 +53,11 @@ export class InvalidAddressError extends DomainError {
     this.violations = violations
   }
 }
+
+export class InvalidEmailError extends DomainError {
+  readonly code = 'INVALID_EMAIL'
+
+  constructor(message?: string) {
+    super(message ?? 'Email is invalid')
+  }
+}
