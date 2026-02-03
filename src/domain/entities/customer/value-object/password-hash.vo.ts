@@ -1,5 +1,5 @@
-import { HashService } from '../../../../application/services/hash.service'
-import { InvalidPasswordError } from '../errors'
+import { HashService } from '@domain/services/hash.service'
+import { InvalidPasswordError } from '@domain/entities/customer/errors'
 
 export class Password {
   private readonly value: string

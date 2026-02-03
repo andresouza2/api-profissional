@@ -1,5 +1,5 @@
-import { ProductRepository } from '../../application/repositories/product/product.repository'
-import { Product } from './../../domain/entities/product/product.entity'
+import { ProductRepository } from '@domain/repositories/product/product.repository'
+import { Product } from '@domain/entities/product/product.entity'
 export class InMemoryProductRepository extends ProductRepository {
   private readonly products = <Product[]>[]
 

@@ -1,8 +1,8 @@
-import { ListAllCustomerUseCase } from '../../../../application/use-cases/customer/list-all-customer.use-case'
-import { DomainError } from '../../../../core/errors/domain-error'
-import { HttpRequest } from '../../request/http-request'
-import { HttpResponse } from '../../response/HttpResponse'
-import { badRequest, ok } from '../../response/HttpResponses'
+import { ListAllCustomerUseCase } from '@application/use-cases/customer/list-all-customer.use-case'
+import { DomainError } from '@core/errors/domain-error'
+import { HttpRequest } from '@presentation/http/request/http-request'
+import { HttpResponse } from '@presentation/http/response/HttpResponse'
+import { badRequest, ok } from '@presentation/http/response/HttpResponses'
 
 export class ListAllCustomerController {
   constructor(private readonly listAllCustomerUseCase: ListAllCustomerUseCase) {}

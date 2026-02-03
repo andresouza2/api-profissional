@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import { HttpResponse } from '../response/HttpResponse'
-import { HttpRequest } from '../request/http-request'
+import { HttpResponse } from '@presentation/http/response/HttpResponse'
+import { HttpRequest } from '@presentation/http/request/http-request'
 
 export interface HttpController {
   handle(request: HttpRequest): Promise<HttpResponse>

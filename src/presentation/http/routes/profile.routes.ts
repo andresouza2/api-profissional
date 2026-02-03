@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { makeAuthController } from '../factories/make-auth-controller'
+import { makeAuthController } from '@presentation/http/factories/make-auth-controller'
 
 const profileRoutes = Router()
 

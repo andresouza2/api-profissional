@@ -1,4 +1,4 @@
-import { InvalidAddressError } from '../errors'
+import { InvalidAddressError } from '@domain/entities/customer/errors'
 
 export interface AddressProps {
   street: string

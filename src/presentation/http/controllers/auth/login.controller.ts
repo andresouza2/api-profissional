@@ -1,9 +1,9 @@
-import { LoginUseCase } from '../../../../application/use-cases/auth/login.use-case'
-import { DomainError } from '../../../../core/errors/domain-error'
-import { HttpRequest } from '../../request/http-request'
-import { HttpResponse } from '../../response/HttpResponse'
-import { badRequest, ok } from '../../response/HttpResponses'
-import { LoginInput } from '../../schemas/login.schema'
+import { LoginUseCase } from '@application/use-cases/auth/login.use-case'
+import { DomainError } from '@core/errors/domain-error'
+import { HttpRequest } from '@presentation/http/request/http-request'
+import { HttpResponse } from '@presentation/http/response/HttpResponse'
+import { badRequest, ok } from '@presentation/http/response/HttpResponses'
+import { LoginInput } from '@presentation/http/schemas/login.schema'
 
 export class LoginController {
   constructor(private readonly loginUseCase: LoginUseCase) {}

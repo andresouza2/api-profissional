@@ -1,7 +1,7 @@
-import { CustomerRepository } from '../../application/repositories/customer/customer.repository'
-import { Customer } from '../../domain/entities/customer/customer.entity'
-import { prisma } from './lib/prisma'
-import { CustomerMapper } from './mappers/customer.mapper'
+import { CustomerRepository } from '@domain/repositories/customer/customer.repository'
+import { Customer } from '@domain/entities/customer/customer.entity'
+import { prisma } from '@infrastructure/repositories/lib/prisma'
+import { CustomerMapper } from '@infrastructure/repositories/mappers/customer.mapper'
 
 export class CustomerRepositoryImpl extends CustomerRepository {
   async findByEmail(email: string): Promise<Customer | null> {

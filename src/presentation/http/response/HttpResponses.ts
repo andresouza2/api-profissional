@@ -1,4 +1,4 @@
-import { HttpResponse } from './HttpResponse'
+import { HttpResponse } from '@presentation/http/response/HttpResponse'
 
 export function ok<T>(body: T): HttpResponse<T> {
   return {

@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import { makeCreateCustomerController } from '../factories/make-create-customer-controller'
-import { validateRequest } from '../middleware/validate.middleware'
-import { CreateCustomerSchema } from '../schemas/customer.schema'
-import { makeListAllCustomerController } from '../factories/mak-list-all-customer-controller'
-import { makeFindByIdCustomerController } from '../factories/make-find-by-id-customer-controller'
+import { makeCreateCustomerController } from '@presentation/http/factories/make-create-customer-controller'
+import { validateRequest } from '@presentation/http/middleware/validate.middleware'
+import { CreateCustomerSchema } from '@presentation/http/schemas/customer.schema'
+import { makeListAllCustomerController } from '@presentation/http/factories/mak-list-all-customer-controller'
+import { makeFindByIdCustomerController } from '@presentation/http/factories/make-find-by-id-customer-controller'
 
 const customerRoutes = Router()
 customerRoutes.get('/customers', makeListAllCustomerController())

@@ -1,7 +1,7 @@
 import { describe, it, jest } from '@jest/globals'
-import { FindByIDCustomerUseCase } from './find-by-id-customer.use-case'
-import { CustomerRepository } from '../../repositories/customer/customer.repository'
-import { Customer } from '../../../domain/entities/customer/customer.entity'
+import { FindByIDCustomerUseCase } from '@application/use-cases/customer/find-by-id-customer.use-case'
+import { CustomerRepository } from '@domain/repositories/customer/customer.repository'
+import { Customer } from '@domain/entities/customer/customer.entity'
 
 describe('FindByIdCustomerUseCase', () => {
   let sut: FindByIDCustomerUseCase

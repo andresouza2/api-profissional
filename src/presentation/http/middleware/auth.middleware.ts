@@ -1,8 +1,8 @@
 import { NextFunction, Request } from 'express'
-import { TokenService } from '../../../application/services/token.service'
-import { unauthorized } from '../response/HttpResponses'
-import { DomainError } from '../../../core/errors/domain-error'
-import { HttpResponse } from '../response/HttpResponse'
+import { TokenService } from '@domain/services/token.service'
+import { unauthorized } from '@presentation/http/response/HttpResponses'
+import { DomainError } from '@core/errors/domain-error'
+import { HttpResponse } from '@presentation/http/response/HttpResponse'
 
 export interface AuthenticatedRequest extends Request {
   user?: {
@@ -12,7 +12,7 @@ export interface AuthenticatedRequest extends Request {
   }
 }
 
-export function authMeddleware(tokenService: TokenService) {
+export function authMiddleware(tokenService: TokenService) {
   return async (
     request: AuthenticatedRequest,
     response: HttpResponse,

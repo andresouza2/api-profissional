@@ -1,8 +1,8 @@
 import { beforeEach, describe, it } from '@jest/globals'
-import { ListAllCustomerUseCase } from './list-all-customer.use-case'
-import { CreateCustomerUseCase } from './create-customer.use-case'
-import { FakeHashService } from '../auth/fake-services.service'
-import { InMemoryCustomerRepository } from '../../../infrastructure/repositories/in-memory-customer.repository'
+import { ListAllCustomerUseCase } from '@application/use-cases/customer/list-all-customer.use-case'
+import { CreateCustomerUseCase } from '@application/use-cases/customer/create-customer.use-case'
+import { FakeHashService } from '@application/use-cases/auth/fake-services.service'
+import { InMemoryCustomerRepository } from '@infrastructure/repositories/in-memory-customer.repository'
 
 describe('ListAllCustomerUseCase', () => {
   let sut: ListAllCustomerUseCase

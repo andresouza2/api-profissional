@@ -1,6 +1,6 @@
-import { Customer } from '../../../domain/entities/customer/customer.entity'
-import { CustomerNotFoundError, InvalidCustomerError } from '../../../domain/entities/customer/errors'
-import { CustomerRepository } from '../../repositories/customer/customer.repository'
+import { Customer } from '@domain/entities/customer/customer.entity'
+import { CustomerNotFoundError, InvalidCustomerError } from '@domain/entities/customer/errors'
+import { CustomerRepository } from '@domain/repositories/customer/customer.repository'
 
 export class FindByIDCustomerUseCase {
   constructor(private readonly customerRepository: CustomerRepository) {}

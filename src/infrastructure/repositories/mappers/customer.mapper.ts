@@ -1,7 +1,6 @@
-import { UniqueEntityId } from '../../../core/UniqueEntityId'
-import { Customer } from '../../../domain/entities/customer/customer.entity'
-import { Address } from '../../../domain/entities/customer/value-object/address.vo'
-import { Password } from '../../../domain/entities/customer/value-object/password-hash.vo'
+import { UniqueEntityId } from '@core/UniqueEntityId'
+import { Customer } from '@domain/entities/customer/customer.entity'
+import { Address, Password } from '@domain/entities/customer/value-object'
 
 export class CustomerMapper {
   static toDomain(raw: any): Customer {

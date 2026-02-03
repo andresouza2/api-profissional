@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
-import { JwtTokenService, JwtConfig } from './jwt-token-service'
+import { JwtTokenService, JwtConfig } from '@infrastructure/services/jwt-token-service'
 
 describe('JwtTokenService', () => {
   let jwtTokenService: JwtTokenService

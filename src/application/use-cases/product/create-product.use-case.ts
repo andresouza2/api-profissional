@@ -1,6 +1,6 @@
-import { Product } from '../../../domain/entities/product/product.entity'
-import { CustomerRepository } from '../../repositories/customer/customer.repository'
-import { ProductRepository } from '../../repositories/product/product.repository'
+import { Product } from '@domain/entities/product/product.entity'
+import { CustomerRepository } from '@domain/repositories/customer/customer.repository'
+import { ProductRepository } from '@domain/repositories/product/product.repository'
 
 interface CreateProductInput {
   customerId: string

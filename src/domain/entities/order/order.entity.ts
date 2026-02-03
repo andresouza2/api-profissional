@@ -1,6 +1,6 @@
-import { AggregateRoot } from '../../../core/AggregateRoot'
-import { UniqueEntityId } from '../../../core/UniqueEntityId'
-import { OrderItem } from '../order-item/order-item.entity'
+import { AggregateRoot } from '@core/AggregateRoot'
+import { UniqueEntityId } from '@core/UniqueEntityId'
+import { OrderItem } from '@domain/entities/order-item/order-item.entity'
 
 export enum OrderStatus {
   PENDING = 'PENDING',

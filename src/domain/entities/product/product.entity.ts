@@ -1,5 +1,5 @@
-import { AggregateRoot } from '../../../core/AggregateRoot'
-import { UniqueEntityId } from '../../../core/UniqueEntityId'
+import { AggregateRoot } from '@core/AggregateRoot'
+import { UniqueEntityId } from '@core/UniqueEntityId'
 
 interface ProductProps {
   name: string

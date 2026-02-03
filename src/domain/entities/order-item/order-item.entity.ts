@@ -1,5 +1,5 @@
-import { Entity } from '../../../core/Entity'
-import { UniqueEntityId } from '../../../core/UniqueEntityId'
+import { Entity } from '@core/Entity'
+import { UniqueEntityId } from '@core/UniqueEntityId'
 
 export interface OrderItemProps {
   productId: UniqueEntityId
