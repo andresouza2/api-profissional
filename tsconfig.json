@@ -6,7 +6,19 @@
     "rootDir": "./src",
     "esModuleInterop": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"],
+      "@application/*": ["./application/*"],
+      "@config/*": ["./config/*"],
+      "@core/*": ["./core/*"],
+      "@domain/*": ["./domain/*"],
+      "@generated/*": ["./generated/*"],
+      "@infrastructure/*": ["./infrastructure/*"],
+      "@modules/*": ["./modules/*"],
+      "@presentation/*": ["./presentation/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", ".vscode"]

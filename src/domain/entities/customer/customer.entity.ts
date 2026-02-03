@@ -1,8 +1,7 @@
-import { Password } from './value-object/password-hash.vo'
 import { AggregateRoot } from '../../../core/AggregateRoot'
 import { UniqueEntityId } from '../../../core/UniqueEntityId'
-import { Address } from './value-object/address.vo'
-import { InvalidCustomerError, InvalidFieldsCustomerError } from './errors'
+import { InvalidCustomerError, InvalidFieldsCustomerError } from '@domain/entities/customer/errors'
+import { Address, Password } from '@domain/entities/customer/value-object'
 
 interface CustomerProps {
   name: string
