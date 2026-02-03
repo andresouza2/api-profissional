@@ -1,10 +1,10 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
-import { Customer } from '../../../domain/entities/customer/customer.entity'
 import { LoginUseCase } from './login.use-case'
-import { InMemoryCustomerRepository } from '../../../infrastructure/repositories/in-memory-customer.repository'
 import { FakeHashService, FakeTokenService } from './fake-services.service'
-import { Password } from '../../../domain/entities/customer/value-object/password-hash.vo'
-import { CustomerInactiveError, InvalidCredentialsError } from '../../../domain/entities/customer/errors'
+import { Customer } from '@domain/entities/customer/customer.entity'
+import { Password } from '@domain/entities/customer/value-object'
+import { CustomerInactiveError, InvalidCredentialsError } from '@domain/entities/customer/errors'
+import { InMemoryCustomerRepository } from '@infrastructure/repositories/in-memory-customer.repository'
 
 describe('LoginUseCase', () => {
   let sut: LoginUseCase

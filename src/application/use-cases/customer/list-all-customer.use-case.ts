@@ -1,11 +1,38 @@
-import { Customer } from '../../../domain/entities/customer/customer.entity'
-import { CustomerRepository } from '../../repositories/customer/customer.repository'
+import { CustomerRepository } from '@domain/repositories/customer/customer.repository'
+import { CustomerOutput } from '@application/use-cases/customer/dto/customer-dto'
 
 export class ListAllCustomerUseCase {
   constructor(private readonly customerRepository: CustomerRepository) {}
 
-  async execute(): Promise<Customer[]> {
+  async execute(): Promise<CustomerOutput[]> {
     const customers = await this.customerRepository.findAll()
-    return customers
+
+    const response = customers.map((customer) => {
+      customer.toJSON()
+      return {
+        id: customer.id.toValue(),
+        name: customer.name,
+        email: customer.email,
+        document: customer.document,
+        phone: customer.phone,
+        address: customer.address
+          ? {
+              street: customer.address.toValue().street,
+              number: customer.address.toValue().number,
+              complement: customer.address.toValue().complement,
+              neighborhood: customer.address.toValue().neighborhood,
+              city: customer.address.toValue().city,
+              state: customer.address.toValue().state,
+              zipCode: customer.address.toValue().zipCode,
+              country: customer.address.toValue().country,
+            }
+          : null,
+        isActive: customer.isActive,
+        createdAt: customer.createdAt,
+        updatedAt: customer.updatedAt,
+      }
+    })
+
+    return response
   }
 }

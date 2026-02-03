@@ -1,5 +1,5 @@
-import { HashService } from '../../services/hash.service'
-import { TokenService, TokenPayload } from '../../services/token.service'
+import { HashService } from '@domain/services/hash.service'
+import { TokenService, TokenPayload } from '@domain/services/token.service'
 
 export class FakeHashService implements HashService {
   async hash(plain: string): Promise<string> {

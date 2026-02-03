@@ -1,9 +1,8 @@
-import { Customer } from '../../../domain/entities/customer/customer.entity'
-import { CustomerAlreadyExistsError } from '../../../domain/entities/customer/errors'
-import { Address } from '../../../domain/entities/customer/value-object/address.vo'
-import { Password } from '../../../domain/entities/customer/value-object/password-hash.vo'
-import { CustomerRepository } from '../../repositories/customer/customer.repository'
-import { HashService } from '../../services/hash.service'
+import { Customer } from '@domain/entities/customer/customer.entity'
+import { CustomerAlreadyExistsError } from '@domain/entities/customer/errors'
+import { Address, Password } from '@domain/entities/customer/value-object'
+import { CustomerRepository } from '@domain/repositories/customer/customer.repository'
+import { HashService } from '@domain/services/hash.service'
 
 export type CreateCustomerDTO = {
   name: string

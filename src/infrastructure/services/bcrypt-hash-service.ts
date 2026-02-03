@@ -1,5 +1,5 @@
 import { compare, hash } from 'bcrypt'
-import { HashService } from '../../application/services/hash.service'
+import { HashService } from '@domain/services/hash.service'
 
 export class BcryptHashService extends HashService {
   private readonly SALT_ROUNDS = 10

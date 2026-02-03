@@ -1,5 +1,5 @@
-import { AggregateRoot } from '../../../core/AggregateRoot'
-import { UniqueEntityId } from '../../../core/UniqueEntityId'
+import { AggregateRoot } from '@core/AggregateRoot'
+import { UniqueEntityId } from '@core/UniqueEntityId'
 import { InvalidCustomerError, InvalidFieldsCustomerError } from '@domain/entities/customer/errors'
 import { Address, Password } from '@domain/entities/customer/value-object'
 

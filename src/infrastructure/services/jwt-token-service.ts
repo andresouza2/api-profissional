@@ -1,5 +1,5 @@
 import jwt, { JwtPayload, SignOptions } from 'jsonwebtoken'
-import { TokenPayload, TokenService } from '../../application/services/token.service'
+import { TokenPayload, TokenService } from '@domain/services/token.service'
 
 export interface JwtConfig {
   secret: string

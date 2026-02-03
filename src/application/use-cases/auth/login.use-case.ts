@@ -1,8 +1,8 @@
-import { HashService } from '../../services/hash.service'
-import { TokenService } from '../../services/token.service'
-import { CustomerRepository } from '../../repositories/customer/customer.repository'
-import { Address } from '../../../domain/entities/customer/value-object/address.vo'
-import { CustomerInactiveError, InvalidCredentialsError } from '../../../domain/entities/customer/errors'
+import { HashService } from '@domain/services/hash.service'
+import { TokenService } from '@domain/services/token.service'
+import { CustomerRepository } from '@domain/repositories/customer/customer.repository'
+import { Address } from '@domain/entities/customer/value-object'
+import { CustomerInactiveError, InvalidCredentialsError } from '@domain/entities/customer/errors'
 
 type AddressOutput = Omit<Address, 'customerId' | 'createdAt' | 'updatedAt'> | undefined
 
@@ -45,7 +45,6 @@ export class LoginUseCase {
       throw new InvalidCredentialsError()
     }
 
-    // Registrar último login
     customer.registerLogin()
     await this.customerRepository.save(customer)
 

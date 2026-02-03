@@ -1,7 +1,6 @@
 import { describe, expect, it } from '@jest/globals'
-import { Address } from './value-object/address.vo'
-import { Customer } from './customer.entity'
-import { Password } from './value-object/password-hash.vo'
+import { Customer } from '@domain/entities/customer/customer.entity'
+import { Address, Password } from '@domain/entities/customer/value-object'
 
 describe('Customer Entity', () => {
   const validAddress = new Address({

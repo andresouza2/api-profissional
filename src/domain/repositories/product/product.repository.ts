@@ -1,4 +1,4 @@
-import { Product } from '../../../domain/entities/product/product.entity'
+import { Product } from '@domain/entities/product/product.entity'
 
 export abstract class ProductRepository {
   abstract create(product: Product): Promise<void>
