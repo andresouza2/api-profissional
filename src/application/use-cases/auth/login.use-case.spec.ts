@@ -1,10 +1,10 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
 import { Customer } from '../../../domain/entities/customer/customer.entity'
-import { InvalidCredentialsError, UserInactiveError } from '../../../core/errors/auth.errors'
 import { LoginUseCase } from './login.use-case'
 import { InMemoryCustomerRepository } from '../../../infrastructure/repositories/in-memory-customer.repository'
 import { FakeHashService, FakeTokenService } from './fake-services.service'
 import { Password } from '../../../domain/entities/customer/value-object/password-hash.vo'
+import { CustomerInactiveError, InvalidCredentialsError } from '../../../domain/entities/customer/errors'
 
 describe('LoginUseCase', () => {
   let sut: LoginUseCase
@@ -98,6 +98,6 @@ describe('LoginUseCase', () => {
         email: 'joao@email.com',
         password: 'Senha123',
       }),
-    ).rejects.toThrow(UserInactiveError)
+    ).rejects.toThrow(CustomerInactiveError)
   })
 })

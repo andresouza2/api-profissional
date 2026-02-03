@@ -9,9 +9,10 @@ const envSchema = z.object({
   //   message: 'DATABASE_URL deve ser uma URL válida',
   // }),
 
-  // JWT_SECRET: z.string().min(10, {
-  //   message: 'JWT_SECRET deve ter no mínimo 10 caracteres',
-  // }),
+  JWT_SECRET: z.string().min(10, {
+    message: 'JWT_SECRET deve ter no mínimo 10 caracteres',
+  }),
+  JWT_EXPIRES_IN: z.string().default('24h'),
 })
 
 const parsed = envSchema.safeParse(process.env)

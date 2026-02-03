@@ -1,14 +1,9 @@
 import { Request, Response } from 'express'
 import { HttpResponse } from '../response/HttpResponse'
+import { HttpRequest } from '../request/http-request'
 
 export interface HttpController {
   handle(request: HttpRequest): Promise<HttpResponse>
-}
-export interface HttpRequest<TBody = unknown, TParams = unknown, TQuery = unknown, THeaders = unknown> {
-  body?: TBody
-  params?: TParams
-  query?: TQuery
-  headers?: THeaders
 }
 
 export function adapterExpressRoute(controller: HttpController) {

@@ -12,11 +12,11 @@ export class FakeHashService implements HashService {
 }
 
 export class FakeTokenService implements TokenService {
-  sign(payload: TokenPayload): string {
+  async sign(payload: TokenPayload): Promise<string> {
     return `token_${payload.sub}`
   }
 
-  verify(token: string): TokenPayload | null {
+  async verify(token: string): Promise<TokenPayload> {
     if (token.startsWith('token_')) {
       const sub = token.replace('token_', '')
       return {
@@ -25,6 +25,6 @@ export class FakeTokenService implements TokenService {
         role: 'USER',
       }
     }
-    return null
+    throw new Error('Invalid token')
   }
 }

@@ -102,7 +102,7 @@ export class Customer extends AggregateRoot<CustomerProps> {
     email: string
     document: string
     phone: string | undefined
-    address: unknown
+    address: Address | undefined
     isActive: boolean
     createdAt: Date
     updatedAt: Date

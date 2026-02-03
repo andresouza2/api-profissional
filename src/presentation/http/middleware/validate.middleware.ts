@@ -17,7 +17,6 @@ export const validateRequest = (schema: z.ZodType) => {
           })),
         })
       }
-      console.log(error)
       next(error)
     }
   }

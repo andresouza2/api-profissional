@@ -3,7 +3,7 @@ import {
   CreateCustomerUseCase,
 } from '../../../../application/use-cases/customer/create-customer.use-case'
 import { DomainError } from '../../../../core/errors/domain-error'
-import { HttpRequest } from '../../adapter/expressAdapter'
+import { HttpRequest } from '../../request/http-request'
 import { HttpResponse } from '../../response/HttpResponse'
 import { badRequest, created } from '../../response/HttpResponses'
 
@@ -34,7 +34,6 @@ export class CreateCustomerController {
       if (error instanceof DomainError) {
         return badRequest({ message: error.message, code: error.code })
       }
-      console.log(error)
       return badRequest({ message: 'Erro ao criar cliente' })
     }
   }

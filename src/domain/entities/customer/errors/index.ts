@@ -24,6 +24,30 @@ export class InvalidCustomerError extends DomainError {
   }
 }
 
+export class CustomerInactiveError extends DomainError {
+  readonly code = 'CUSTOMER_INACTIVE'
+
+  constructor() {
+    super('Customer is inactive')
+  }
+}
+
+export class InvalidCredentialsError extends DomainError {
+  readonly code = 'INVALID_CREDENTIALS'
+
+  constructor() {
+    super('Invalid credentials provided')
+  }
+}
+
+export class InvalidTokenError extends DomainError {
+  readonly code = 'INVALID_TOKEN'
+
+  constructor() {
+    super('Invalid token')
+  }
+}
+
 export class InvalidFieldsCustomerError extends DomainError {
   readonly code = 'INVALID_FIELDS_CUSTOMER'
   readonly violations: string[]

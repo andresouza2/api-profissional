@@ -5,6 +5,6 @@ export interface TokenPayload {
 }
 
 export abstract class TokenService {
-  abstract sign(payload: TokenPayload): string
-  abstract verify(token: string): TokenPayload | null
+  abstract sign(payload: TokenPayload): Promise<string>
+  abstract verify(token: string): Promise<TokenPayload>
 }

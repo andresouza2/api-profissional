@@ -1,7 +1,10 @@
 import { HashService } from '../../services/hash.service'
 import { TokenService } from '../../services/token.service'
-import { InvalidCredentialsError, UserInactiveError } from '../../../core/errors/auth.errors'
 import { CustomerRepository } from '../../repositories/customer/customer.repository'
+import { Address } from '../../../domain/entities/customer/value-object/address.vo'
+import { CustomerInactiveError, InvalidCredentialsError } from '../../../domain/entities/customer/errors'
+
+type AddressOutput = Omit<Address, 'customerId' | 'createdAt' | 'updatedAt'> | undefined
 
 export interface LoginInput {
   email: string
@@ -14,6 +17,7 @@ export interface LoginOutput {
     name: string
     email: string
     document: string
+    address: AddressOutput
   }
 }
 
@@ -33,23 +37,29 @@ export class LoginUseCase {
       throw new InvalidCredentialsError()
     }
     if (!customer.isActive) {
-      throw new UserInactiveError()
+      throw new CustomerInactiveError()
     }
 
     const passwordMatches = await this.hashService.compare(password, customer.password.toValue())
-
     if (!passwordMatches) {
       throw new InvalidCredentialsError()
     }
 
+    // Registrar último login
     customer.registerLogin()
     await this.customerRepository.save(customer)
 
-    const accessToken = this.tokenService.sign({
+    const accessToken = await this.tokenService.sign({
       sub: customer.id.toValue(),
       email: customer.email,
       role: 'CUSTOMER',
     })
+
+    let address: AddressOutput
+    if (customer.address?.toValue()) {
+      const addressValue = customer.address.toValue()
+      address = addressValue as unknown as Omit<Address, 'customerId' | 'createdAt' | 'updatedAt'>
+    }
 
     return {
       accessToken,
@@ -58,6 +68,7 @@ export class LoginUseCase {
         name: customer.name,
         email: customer.email,
         document: customer.document,
+        address,
       },
     }
   }

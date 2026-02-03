@@ -12,16 +12,16 @@ export class CustomerMapper {
         document: raw.document,
         phone: raw.phone || undefined,
         password: Password.fromHashed(raw.password),
-        address: raw.addresses
+        address: raw.address
           ? new Address({
-              street: raw.address?.street,
-              number: raw.address?.number,
-              city: raw.address?.city,
-              state: raw.address?.state,
-              zipCode: raw.address?.zipCode,
-              neighborhood: raw.address?.neighborhood,
-              complement: raw.address?.complement,
-              country: raw.address?.country,
+              street: raw.address.street,
+              number: raw.address.number,
+              complement: raw.address.complement,
+              neighborhood: raw.address.neighborhood,
+              city: raw.address.city,
+              state: raw.address.state,
+              zipCode: raw.address.zipCode,
+              country: raw.address.country,
             })
           : undefined,
         isActive: raw.isActive,
@@ -38,16 +38,26 @@ export class CustomerMapper {
       name: customer.name,
       email: customer.email,
       document: customer.document,
-      phone: customer.phone ?? '',
+      phone: customer.phone,
       password: customer.password.toValue(),
-      address: customer.address
-        ? {
-            create: customer.address,
-          }
-        : undefined,
       isActive: customer.isActive,
+      lastLoginAt: customer.lastLoginAt,
       createdAt: customer.createdAt,
       updatedAt: customer.updatedAt,
+      address: customer.address
+        ? {
+            create: {
+              street: customer.address.toValue().street,
+              number: customer.address.toValue().number,
+              complement: customer.address.toValue().complement,
+              neighborhood: customer.address.toValue().neighborhood,
+              city: customer.address.toValue().city,
+              state: customer.address.toValue().state,
+              zipCode: customer.address.toValue().zipCode,
+              country: customer.address.toValue().country,
+            },
+          }
+        : undefined,
     }
   }
 }

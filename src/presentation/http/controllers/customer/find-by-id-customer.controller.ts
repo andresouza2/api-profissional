@@ -1,6 +1,6 @@
 import { FindByIDCustomerUseCase } from '../../../../application/use-cases/customer/find-by-id-customer.use-case'
 import { DomainError } from '../../../../core/errors/domain-error'
-import { HttpRequest } from '../../adapter/expressAdapter'
+import { HttpRequest } from '../../request/http-request'
 import { HttpResponse } from '../../response/HttpResponse'
 import { badRequest, ok } from '../../response/HttpResponses'
 
