@@ -26,7 +26,7 @@ export class ListAllCustomerUseCase {
               zipCode: customer.address.toValue().zipCode,
               country: customer.address.toValue().country,
             }
-          : null,
+          : undefined,
         isActive: customer.isActive,
         createdAt: customer.createdAt,
         updatedAt: customer.updatedAt,

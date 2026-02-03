@@ -1,17 +1,9 @@
 import { Customer } from '@domain/entities/customer/customer.entity'
 import { CustomerAlreadyExistsError } from '@domain/entities/customer/errors'
-import { Address, Password } from '@domain/entities/customer/value-object'
+import { Password } from '@domain/entities/customer/value-object'
 import { CustomerRepository } from '@domain/repositories/customer/customer.repository'
 import { HashService } from '@domain/services/hash.service'
-
-export type CreateCustomerDTO = {
-  name: string
-  email: string
-  document: string
-  password: string
-  phone?: string
-  address?: Address
-}
+import { CreateCustomerDTO } from '@application/use-cases/customer/dto/customer-dto'
 
 export class CreateCustomerUseCase {
   constructor(
