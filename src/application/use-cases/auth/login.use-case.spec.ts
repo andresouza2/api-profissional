@@ -3,8 +3,8 @@ import { LoginUseCase } from './login.use-case'
 import { FakeHashService, FakeTokenService } from './fake-services.service'
 import { Customer } from '@domain/entities/customer/customer.entity'
 import { Password } from '@domain/entities/customer/value-object'
-import { CustomerInactiveError, InvalidCredentialsError } from '@domain/entities/customer/errors'
 import { InMemoryCustomerRepository } from '@infrastructure/repositories/in-memory-customer.repository'
+import { CustomerInactiveError, InvalidCredentialsError } from '@/domain/entities/customer/errors'
 
 describe('LoginUseCase', () => {
   let sut: LoginUseCase

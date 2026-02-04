@@ -1,10 +1,9 @@
 import { jest } from '@jest/globals'
-import { Customer } from '@domain/entities/customer/customer.entity'
-import { Product } from '@domain/entities/product/product.entity'
 import { Password } from '@domain/entities/customer/value-object'
 import { CreateProductUseCase } from './create-product.use-case'
 import { CustomerRepository } from '@domain/repositories/customer/customer.repository'
 import { ProductRepository } from '@domain/repositories/product/product.repository'
+import { Customer } from '@domain/entities/customer/customer.entity'
 
 describe('CreateProductUseCase', () => {
   let customerRepo: jest.Mocked<CustomerRepository>
@@ -35,19 +34,23 @@ describe('CreateProductUseCase', () => {
     })
     customerRepo.findById.mockResolvedValue(customer)
 
-    const product = Product.create({
+    const result = await useCase.execute({
+      customerId: customer.id.toValue(),
       name: 'Sample Product',
       description: 'This is a sample product',
       sku: 'SP001',
       price: 100,
       stock: 50,
       currency: 'USD',
-      isActive: true,
     })
 
-    const result = await useCase.execute({ customerId: customer.id.toValue(), product })
-
-    expect(result).toBe(product)
-    expect(productRepo.create).toHaveBeenCalledWith(product)
+    expect(result.name).toBe('Sample Product')
+    expect(result.description).toBe('This is a sample product')
+    expect(result.sku).toBe('SP001')
+    expect(result.price).toBe(100)
+    expect(result.stock).toBe(50)
+    expect(result.currency).toBe('USD')
+    expect(result.isActive).toBe(true)
+    expect(productRepo.create).toHaveBeenCalledWith(result)
   })
 })

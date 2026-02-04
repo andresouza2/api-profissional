@@ -1,7 +1,8 @@
 import { describe, expect, it } from '@jest/globals'
-import { InMemoryCustomerRepository } from '@infrastructure/repositories/in-memory-customer.repository'
-import { CreateCustomerDTO, CreateCustomerUseCase } from '@application/use-cases/customer/create-customer.use-case'
+import { CreateCustomerUseCase } from '@application/use-cases/customer/create-customer.use-case'
 import { FakeHashService } from '@application/use-cases/auth/fake-services.service'
+import { CreateCustomerDTO } from './dto/customer-dto'
+import { InMemoryCustomerRepository } from '@/infrastructure/repositories/in-memory-customer.repository'
 
 describe('CreateCustomerUseCase', () => {
   it('should create a customer successfully', async () => {
