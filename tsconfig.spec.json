@@ -1,7 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "types": ["jest", "@jest/globals"]
+    "types": ["jest", "@jest/globals"],
+    "isolatedModules": true
   },
   "include": ["src/**/*.spec.ts", "src/**/*.test.ts"],
   "exclude": ["node_modules", "dist"]
