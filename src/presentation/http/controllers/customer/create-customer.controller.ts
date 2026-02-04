@@ -1,4 +1,5 @@
-import { CreateCustomerDTO, CreateCustomerUseCase } from '@application/use-cases/customer/create-customer.use-case'
+import { CreateCustomerDTO } from '@application/use-cases/customer/dto/customer-dto'
+import { CreateCustomerUseCase } from '@application/use-cases/customer/create-customer.use-case'
 import { DomainError } from '@core/errors/domain-error'
 import { HttpRequest } from '@presentation/http/request/http-request'
 import { HttpResponse } from '@presentation/http/response/HttpResponse'

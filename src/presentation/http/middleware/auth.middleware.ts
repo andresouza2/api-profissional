@@ -12,8 +12,10 @@ export interface AuthenticatedRequest extends Request {
   }
 }
 
-export function authMiddleware(tokenService: TokenService) {
-  return async (
+export class AuthMiddleware {
+  constructor(private readonly tokenService: TokenService) {}
+
+  handle = async (
     request: AuthenticatedRequest,
     response: HttpResponse,
     next: NextFunction,
@@ -31,7 +33,7 @@ export function authMiddleware(tokenService: TokenService) {
     }
 
     try {
-      const payload = await tokenService.verify(token)
+      const payload = await this.tokenService.verify(token)
 
       request.user = {
         id: payload.sub,

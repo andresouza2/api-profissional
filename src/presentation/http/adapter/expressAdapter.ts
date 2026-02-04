@@ -13,6 +13,7 @@ export function adapterExpressRoute(controller: HttpController) {
       params: req.params,
       query: req.query,
       headers: req.headers,
+      user: (req as any).user,
     }
 
     const httpResponse = await controller.handle(httpRequest)
