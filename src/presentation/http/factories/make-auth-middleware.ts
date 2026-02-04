@@ -5,8 +5,9 @@ import { env } from '@config/env.schema'
 export function makeAuthMiddleware() {
   const tokenService = new JwtTokenService({
     secret: env.JWT_SECRET,
-    expiresIn: env.JWT_EXPIRES_IN,
+    expiresIn: Number(env.JWT_EXPIRES_IN),
   })
+
   const middleware = new AuthMiddleware(tokenService)
 
   return middleware.handle

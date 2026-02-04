@@ -3,7 +3,7 @@ import { TokenPayload, TokenService } from '@domain/services/token.service'
 
 export interface JwtConfig {
   secret: string
-  expiresIn: string | number
+  expiresIn: SignOptions['expiresIn']
   issuer?: string
   audience?: string
 }
@@ -20,8 +20,7 @@ export class JwtTokenService implements TokenService {
 
   async sign(payload: TokenPayload): Promise<string> {
     const options: SignOptions = {
-      expiresIn:
-        typeof this.config.expiresIn === 'string' ? Number.parseInt(this.config.expiresIn, 10) : this.config.expiresIn,
+      expiresIn: this.config.expiresIn,
       subject: payload.sub,
     }
 

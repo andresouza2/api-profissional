@@ -11,7 +11,7 @@ export interface LoginInput {
   password: string
 }
 export interface LoginOutput {
-  accessToken: string
+  access_token: string
   customer: {
     id: string
     name: string
@@ -48,7 +48,7 @@ export class LoginUseCase {
     customer.registerLogin()
     await this.customerRepository.save(customer)
 
-    const accessToken = await this.tokenService.sign({
+    const access_token = await this.tokenService.sign({
       sub: customer.id.toValue(),
       email: customer.email,
       role: 'CUSTOMER',
@@ -61,7 +61,7 @@ export class LoginUseCase {
     }
 
     return {
-      accessToken,
+      access_token,
       customer: {
         id: customer.id.toValue(),
         name: customer.name,
