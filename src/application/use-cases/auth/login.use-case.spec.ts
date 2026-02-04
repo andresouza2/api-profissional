@@ -33,7 +33,7 @@ describe('LoginUseCase', () => {
       password: 'Senha123',
     })
 
-    expect(result.accessToken).toBeDefined()
+    expect(result.access_token).toBeDefined()
     expect(result.customer.email).toBe('joao@email.com')
     expect(result.customer.name).toBe('João Silva')
   })
