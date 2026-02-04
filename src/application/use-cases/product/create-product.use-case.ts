@@ -1,7 +1,7 @@
 import { Product } from '@domain/entities/product/product.entity'
 import { CustomerRepository } from '@domain/repositories/customer/customer.repository'
 import { ProductRepository } from '@domain/repositories/product/product.repository'
-import { CreateProductInput } from '@application/use-cases/product/dto/product-dto'
+import { CreateProductInput, ProductOutput } from '@application/use-cases/product/dto/product-dto'
 import { CustomerNotFoundError } from '@domain/entities/customer/errors'
 
 export class CreateProductUseCase {
@@ -10,7 +10,7 @@ export class CreateProductUseCase {
     private readonly productRepository: ProductRepository,
   ) {}
 
-  async execute(data: CreateProductInput): Promise<Product> {
+  async execute(data: CreateProductInput): Promise<ProductOutput> {
     const { customerId, name, description, sku, price, stock, currency } = data
 
     const customer = await this.customerRepository.findById(customerId)
@@ -28,6 +28,14 @@ export class CreateProductUseCase {
     })
 
     await this.productRepository.create(product)
-    return product
+    return {
+      id: product.id.toString(),
+      name: product.name,
+      description: product.description,
+      sku: product.sku,
+      price: product.price,
+      stock: product.stock,
+      currency: product.currency,
+    }
   }
 }
